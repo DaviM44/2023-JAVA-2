@@ -30,7 +30,19 @@ public class ProductService {
 
         public void deleteProductById(long id) {
 
+           
+            if(this.repository.existsById(id)){
+                this.repository.deleteById(id);
+            }
+            else{
+                throw new EntityNotFoundException("Producto no encontrado");
+            }
             
 
+        }
+
+        public Product save(Product product){
+            return this.repository.save(product);
+        }
         }
 }
